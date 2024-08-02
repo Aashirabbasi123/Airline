@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Aashir-airline\\Airline-reservation\\Airline-reservation.csproj": {}
+    "C:\\Users\\Administrator\\Desktop\\Airline\\Airline\\Airline-reservation.csproj": {}
   },
   "projects": {
-    "D:\\Aashir-airline\\Airline-reservation\\Airline-reservation.csproj": {
+    "C:\\Users\\Administrator\\Desktop\\Airline\\Airline\\Airline-reservation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Aashir-airline\\Airline-reservation\\Airline-reservation.csproj",
+        "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\Airline\\Airline\\Airline-reservation.csproj",
         "projectName": "Airline-reservation",
-        "projectPath": "D:\\Aashir-airline\\Airline-reservation\\Airline-reservation.csproj",
+        "projectPath": "C:\\Users\\Administrator\\Desktop\\Airline\\Airline\\Airline-reservation.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "D:\\Aashir-airline\\Airline-reservation\\obj\\",
+        "outputPath": "C:\\Users\\Administrator\\Desktop\\Airline\\Airline\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -44,6 +44,24 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

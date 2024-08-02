@@ -1,7 +1,17 @@
+using Airline_reservation.Services;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<ApplicationDBContext>(Options =>
+{
+    var con = builder.Configuration.GetConnectionString("default");
+
+    Options.UseSqlServer(con);
+});
 
 var app = builder.Build();
 
