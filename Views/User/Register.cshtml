@@ -1,0 +1,53 @@
+﻿@model UserLogin
+
+<form asp-action="Register" method="post">
+    <div>
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="EmaiL"></label>
+        <input asp-for="EmaiL" />
+        <span asp-validation-for="EmaiL" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="CPassword"></label>
+        <input asp-for="CPassword" type="password" />
+        <span asp-validation-for="CPassword" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Age"></label>
+        <input asp-for="Age" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="PhoneNo"></label>
+        <input asp-for="PhoneNo" />
+        <span asp-validation-for="PhoneNo" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="NIC"></label>
+        <input asp-for="NIC" />
+        <span asp-validation-for="NIC" class="text-danger"></span>
+    </div>
+    <div>
+        <button type="submit">Register</button>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -6,12 +6,22 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<ApplicationDBContext>(Options =>
-{
-    //hello
-    var con = builder.Configuration.GetConnectionString("default");
+// Register IHttpContextAccessor
+builder.Services.AddHttpContextAccessor(); // Add this line
 
-    Options.UseSqlServer(con);
+// Configure Entity Framework to use SQL Server
+builder.Services.AddDbContext<ApplicationDBContext>(options =>
+{
+    var con = builder.Configuration.GetConnectionString("default");
+    options.UseSqlServer(con);
+});
+
+// Add session services
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Set session timeout
+    options.Cookie.HttpOnly = true; // Make cookie HttpOnly
+    options.Cookie.IsEssential = true; // Make cookie essential for the application
 });
 
 var app = builder.Build();
@@ -20,7 +30,6 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -28,6 +37,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+// Use session middleware
+app.UseSession();
 
 app.UseAuthorization();
 

@@ -55,8 +55,10 @@ namespace Airline_reservation.Models
 
         [Display(Name = "NIC No")]
         [Required(ErrorMessage = "NIC Required"), RegularExpression(@"^([0-9]{13})$", ErrorMessage = "Invaild NIC")]
-        [StringLength(11)]
+        [StringLength(13)]
         public string NIC { get; set; }
+
+        public int usertype { get; set; } = 2;
 
     }
 }

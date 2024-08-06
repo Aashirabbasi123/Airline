@@ -157,6 +157,9 @@ namespace Airlinereservation.Migrations
                         .HasMaxLength(11)
                         .HasColumnType("nvarchar(11)");
 
+                    b.Property<int>("usertype")
+                        .HasColumnType("int");
+
                     b.HasKey("UserId");
 
                     b.ToTable("TblUserLogin");
