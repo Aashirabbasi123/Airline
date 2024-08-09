@@ -1,48 +1,53 @@
 ﻿@model UserLogin
 
-<form asp-action="Register" method="post">
-    <div>
-        <label asp-for="FirstName"></label>
-        <input asp-for="FirstName" />
-        <span asp-validation-for="FirstName" class="text-danger"></span>
+<form asp-action="Register" method="post" class="container mt-4">
+    <div class="mb-3">
+        <label asp-for="FirstName" class="form-label"></label>
+        <input asp-for="FirstName" class="form-control" />
+        <div asp-validation-for="FirstName" class="text-danger"></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="LastName" class="form-label"></label>
+        <input asp-for="LastName" class="form-control" />
+        <div asp-validation-for="LastName" class="text-danger"></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="UserName" class="form-label"></label>
+        <input asp-for="UserName" class="form-control" />
+        <div asp-validation-for="UserName" class="text-danger"></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="EmaiL" class="form-label"></label>
+        <input asp-for="EmaiL" type="email" class="form-control" />
+        <div asp-validation-for="EmaiL" class="text-danger"></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" type="password" class="form-control" />
+        <div asp-validation-for="Password" class="text-danger"></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="CPassword" class="form-label"></label>
+        <input asp-for="CPassword" type="password" class="form-control" />
+        <div asp-validation-for="CPassword" class="text-danger"></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Age" class="form-label"></label>
+        <input asp-for="Age" type="number" class="form-control" />
+        <div asp-validation-for="Age" class="text-danger"></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="PhoneNo" class="form-label"></label>
+        <input asp-for="PhoneNo" type="tel" class="form-control" />
+        <div asp-validation-for="PhoneNo" class="text-danger"></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="NIC" class="form-label"></label>
+        <input asp-for="NIC" class="form-control" />
+        <div asp-validation-for="NIC" class="text-danger"></div>
     </div>
     <div>
-        <label asp-for="LastName"></label>
-        <input asp-for="LastName" />
-        <span asp-validation-for="LastName" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="EmaiL"></label>
-        <input asp-for="EmaiL" />
-        <span asp-validation-for="EmaiL" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="Password"></label>
-        <input asp-for="Password" type="password" />
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="CPassword"></label>
-        <input asp-for="CPassword" type="password" />
-        <span asp-validation-for="CPassword" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="Age"></label>
-        <input asp-for="Age" />
-        <span asp-validation-for="Age" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="PhoneNo"></label>
-        <input asp-for="PhoneNo" />
-        <span asp-validation-for="PhoneNo" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="NIC"></label>
-        <input asp-for="NIC" />
-        <span asp-validation-for="NIC" class="text-danger"></span>
-    </div>
-    <div>
-        <button type="submit">Register</button>
+        <button type="submit" class="btn btn-primary">Register</button>
     </div>
 </form>
 

@@ -1,0 +1,46 @@
+﻿@model List<Airline_reservation.Models.FlightReservation>
+
+@{
+    ViewData["Title"] = "DetailFlight";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="mb-4">@ViewData["Title"]</h1>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">From City</th>
+                <th scope="col">To City</th>
+                <th scope="col">Departure Date</th>
+                <th scope="col">Departure Time</th>
+                <th scope="col">Seat Type</th>
+                <th scope="col">Ticket Price</th>
+                <th scope="col">Plane Name</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var flight in Model)
+            {
+                <tr>
+                    <td>@flight.ResFrom</td>
+                    <td>@flight.ResTo</td>
+                    <td>@flight.ResDepDate</td>
+                    <td>@flight.ResTime</td>
+                    <td>@flight.SeatType</td>
+                    <td>@flight.ResTicketPrice</td>
+                    <td>@flight.ResPlane</td>
+                    <td>
+                        <a asp-controller="Flight" asp-action="Delete" asp-route-id="@flight.Resid" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this flight?');">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="mt-4">
+    <a href="@Url.Action("AddFlight", "Flight")" class="btn btn-primary">Add New Flight</a>
+</div>

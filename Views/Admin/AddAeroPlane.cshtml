@@ -1,0 +1,27 @@
+﻿@model AeroplaneInfo
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Add New Flight</h2>
+    <form asp-action="AddAeroPlane" method="post">
+        <div class="form-group">
+            <label asp-for="APlaneName" class="control-label">Aeroplane Name</label>
+            <input asp-for="APlaneName" class="form-control" placeholder="Enter Aeroplane Name" />
+            <span asp-validation-for="APlaneName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SeatingCapacity" class="control-label">Seating Capacity</label>
+            <input asp-for="SeatingCapacity" class="form-control" placeholder="Enter Seating Capacity" />
+            <span asp-validation-for="SeatingCapacity" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Price" class="control-label">Price</label>
+            <input asp-for="Price" class="form-control" placeholder="Enter Price" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Flight</button>
+    </form>
+</div>

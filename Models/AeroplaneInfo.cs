@@ -22,5 +22,7 @@ namespace Airline_reservation.Models
         [Required(ErrorMessage = "Price reqried")]
         public float Price { get; set; }
 
+        public virtual ICollection<FlightReservation> FlightReservation { get; set; }
+
     }
 }

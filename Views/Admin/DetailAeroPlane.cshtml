@@ -1,0 +1,39 @@
+﻿@model List<Airline_reservation.Models.AeroplaneInfo>
+
+@{
+    ViewData["Title"] = "DetailFlight";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="mb-4">@ViewData["Title"]</h1>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Aeroplane Name</th>
+                <th scope="col">Seating Capacity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var aero in Model)
+            {
+                <tr>
+                    <td>@aero.APlaneName</td>
+                    <td>@aero.SeatingCapacity</td>
+                    <td>@aero.Price.ToString("C")</td>
+                    <td>
+                        <a asp-controller="Admin" asp-action="Edit" asp-route-id="@aero.PlaneId" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-controller="Admin" asp-action="Delete" asp-route-id="@aero.PlaneId" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this flight?');">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="mt-4">
+    <a href="@Url.Action("AddAeroPlane", "Admin")" class="btn btn-primary">Add New Flight</a>
+</div>

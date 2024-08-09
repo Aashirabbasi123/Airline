@@ -29,13 +29,14 @@ namespace Airline_reservation.Controllers
         {
             if (user != null)
             {
-                var existingUser = _dbContext.UserAccouunts.FirstOrDefault(a => a.FirstName == user.FirstName);
+                var existingUser = _dbContext.UserAccouunts.FirstOrDefault(a => a.UserName == user.UserName);
                 if (existingUser == null)
                 {
                     var newUser = new UserLogin
                     {
                         FirstName = user.FirstName,
                         LastName = user.LastName,
+                        UserName = user.UserName,
                         EmaiL = user.EmaiL,
                         Password = user.Password,
                         CPassword = user.CPassword,
@@ -50,12 +51,12 @@ namespace Airline_reservation.Controllers
 
                     if (user.usertype == 1)
                     {
-                        HttpContext.Session.SetString("Admin", newUser.FirstName);
+                        HttpContext.Session.SetString("Admin", newUser.UserName);
                         return RedirectToAction("Index", "Admin");
                     }
                     else
                     {
-                        HttpContext.Session.SetString("User", newUser.FirstName);
+                        HttpContext.Session.SetString("User", newUser.UserName);
                         return RedirectToAction("Index", "Home");
                     }
                 }

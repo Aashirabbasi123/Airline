@@ -12,18 +12,25 @@ namespace Airline_reservation.Models
 
         [Display(Name = "First Name")]
         [Required(ErrorMessage = "First Name Required")]
-        [MaxLength(40, ErrorMessage = "Max 40 char allow"), MinLength(5, ErrorMessage = "Min 5 Char Req")]
+        [MaxLength(40, ErrorMessage = "Max 40 char allow"), MinLength(3, ErrorMessage = "Min 3 Char Req")]
 
         public string FirstName { get; set; }
 
         [Display(Name = "Last Name")]
         [Required(ErrorMessage = "Last Name Required")]
-        [MaxLength(40, ErrorMessage = "Max 40 char allow"), MinLength(5, ErrorMessage = "Min 5 Char Req")]
+        [MaxLength(40, ErrorMessage = "Max 40 char allow"), MinLength(3, ErrorMessage = "Min 3 Char Req")]
 
         public string LastName { get; set; }
 
-        [Display(Name = "Email Id")]
-        [Required(ErrorMessage = "Email Id Required")]
+
+        [Display(Name = "User Name")]
+        [Required(ErrorMessage = "User Name Required")]
+        [MaxLength(40, ErrorMessage = "Max 40 char allow"), MinLength(3, ErrorMessage = "Min 3 Char Req")]
+
+        public string UserName { get; set; }
+
+        [Display(Name = "Email")]
+        [Required(ErrorMessage = "Email Required")]
         [MaxLength(30, ErrorMessage = "Max 30 char allow"), MinLength(5, ErrorMessage = "Min 5 Char Req")]
         [DataType(DataType.EmailAddress)]
 

@@ -1,0 +1,71 @@
+﻿@model FlightReservation
+
+@{
+    ViewData["Title"] = "Add Flight";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2>Add Flight Reservation</h2>
+    <form asp-action="AddFlight" method="post">
+        <div class="form-group">
+            <label asp-for="ResFrom" class="control-label">From</label>
+            <select asp-for="ResFrom" class="form-control" asp-items="ViewBag.Locations">
+                <option value="">Select Departure Location</option>
+            </select>
+            <span asp-validation-for="ResFrom" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ResTo" class="control-label">To</label>
+            <select asp-for="ResTo" class="form-control" asp-items="ViewBag.Locations">
+                <option value="">Select Destination Location</option>
+            </select>
+            <span asp-validation-for="ResTo" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ResDepDate" class="control-label">Departure Date</label>
+            <input asp-for="ResDepDate" class="form-control" type="date" />
+            <span asp-validation-for="ResDepDate" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ResTime" class="control-label">Time</label>
+            <input asp-for="ResTime" class="form-control" type="time" />
+            <span asp-validation-for="ResTime" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ResTicketPrice" class="control-label">Ticket Price</label>
+            <input asp-for="ResTicketPrice" class="form-control" type="number" step="0.01" placeholder="Price in USD" />
+            <span asp-validation-for="ResTicketPrice" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PlaneInfo" class="control-label">Plane Information</label>
+            <select asp-for="PlaneInfo" class="form-control" asp-items="ViewBag.Planes">
+                <option value="">Select Plane</option>
+            </select>
+            <span asp-validation-for="PlaneInfo" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="SeatType" class="control-label">Seat Type</label>
+            <input asp-for="SeatType" class="form-control" placeholder="e.g., Economy, Business" />
+            <span asp-validation-for="SeatType" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ResPlane" class="control-label">Plane Registration</label>
+            <input asp-for="ResPlane" class="form-control" placeholder="e.g., N12345" />
+            <span asp-validation-for="ResPlane" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Flight</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+
+}

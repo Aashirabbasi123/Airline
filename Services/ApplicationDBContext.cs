@@ -14,6 +14,7 @@ namespace Airline_reservation.Services
 
         public DbSet<AeroplaneInfo> Planeinfo { get; set; }
         public DbSet<FlightBooking> FlightBookings { get; set; }
+        public DbSet<FlightReservation> FlightReservation { get; set; }
 
     }
 }

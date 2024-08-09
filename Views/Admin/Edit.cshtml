@@ -1,0 +1,32 @@
+﻿@model Airline_reservation.Models.AeroplaneInfo
+
+@{
+    ViewData["Title"] = "DetailFlight";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container mt-4">
+    <h2>Edit Aeroplane</h2>
+
+    <form asp-action="Edit" method="post">
+        <div class="form-group">
+            <label asp-for="APlaneName" class="control-label">Aeroplane Name</label>
+            <input asp-for="APlaneName" class="form-control" value="@ViewData["Name"]" />
+            <span asp-validation-for="APlaneName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SeatingCapacity" class="control-label">Seating Capacity</label>
+            <input asp-for="SeatingCapacity" class="form-control" value="@ViewData["Seat"]" />
+            <span asp-validation-for="SeatingCapacity" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Price" class="control-label">Price</label>
+            <input asp-for="Price" class="form-control" value="@ViewData["Price"]" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a asp-action="DetailFlight" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+

@@ -21,5 +21,8 @@ namespace Airline_reservation.Models
         [MinLength(5, ErrorMessage = "Min 5 Char Req"), MaxLength(10, ErrorMessage = "Max 10 char allow")]
 
         public string Password { get; set; }
+
+
+
     }
 }

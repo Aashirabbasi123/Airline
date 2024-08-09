@@ -7,37 +7,29 @@ namespace Airline_reservation.Models
     public class FlightBooking
     {
         [Key]
+        public int BokId { get; set; }
 
-        public int bid { get; set; }
+        [Required, Display(Name = "Customer Name")]
+        public string BokCusName { get; set; }
 
-        [Required(ErrorMessage = "Form City req")]
-        [Display(Name = "From City")]
-        [StringLength(40, ErrorMessage = "Max 40 char allowed")]
+        [Required, Display(Name = "Customer Address")]
+        public string BokCusAddress { get; set; }
 
-        public string From { get; set; }
+        [Required, Display(Name = "Customer Email")]
+        public string BokCusEmail { get; set; }
 
-        [Required(ErrorMessage = "To City req")]
-        [Display(Name = "To City")]
-        [StringLength(40, ErrorMessage = "Max 40 char allowed")]
+        [Required, Display(Name = "No Of Seats")]
+        public int BokCusSeat { get; set; }
 
-        public string To { get; set; }
+        [Required, Display(Name = "Phone Numer")]
+        public string BokCusPhone { get; set; }
 
-        [Display(Name = "Departure Date")]
-        [DataType(DataType.Date)]
+        [Required, Display(Name = "Customer CNIC")]
+        public string  BokCusNic { get; set; }
 
-        public string DDate { get; set; }
+        public int ResId { get; set; }
 
-        [Display(Name = "Departure Time")]
-        [DataType(DataType.Time)]
+        public virtual FlightReservation FlightReservation { get; set; }
 
-        public string DTime { get; set; }
-
-        public int PlaneId { get; set; }
-        public virtual AeroplaneInfo PlaneInfo { get; set; }
-
-
-        [Display(Name = "Seat Type")]
-        [StringLength(25)]
-        public string SeatType { get; set; }
     }
 }
