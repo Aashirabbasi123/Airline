@@ -9,7 +9,7 @@ namespace Airline_reservation.Services
         {
         }
 
-        public DbSet<AdninLogin> AdminLogins { get; set; }
+        public DbSet<LoginSystem> AdminLogins { get; set; }
         public DbSet<UserLogin> UserAccouunts { get; set; }
 
         public DbSet<AeroplaneInfo> Planeinfo { get; set; }

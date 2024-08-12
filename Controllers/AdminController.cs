@@ -7,8 +7,6 @@ using System;
 namespace Airline_reservation.Controllers
 {
 
-
-
     public class AdminController : Controller
     {
     private readonly ApplicationDBContext _context;
@@ -19,6 +17,10 @@ namespace Airline_reservation.Controllers
         }
         public IActionResult Index()
         {
+            if (HttpContext.Session.GetString("Admin") == null)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
             return View();
         }
 
@@ -65,12 +67,20 @@ namespace Airline_reservation.Controllers
 
         public IActionResult Logout()
         {
+            if (HttpContext.Session.GetString("Admin") == null)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
         }
 
         public IActionResult AddAeroPlane()
         {
+            if (HttpContext.Session.GetString("Admin") == null)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
             return View();
         }
 
@@ -91,12 +101,20 @@ namespace Airline_reservation.Controllers
 
         public IActionResult DetailAeroPlane()
         {
+            if(HttpContext.Session.GetString("Admin") == null)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
            var aeroplane = _context.Planeinfo.ToList();
             return View(aeroplane);
         }
 
         public IActionResult Delete(int id)
         {
+            if (HttpContext.Session.GetString("Admin") == null)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
             var FlightDelete = _context.Planeinfo.Find(id);
             _context.Remove(FlightDelete);
             _context.SaveChanges(true);
@@ -105,6 +123,10 @@ namespace Airline_reservation.Controllers
 
         public IActionResult Edit(int id)
         {
+            if (HttpContext.Session.GetString("Admin") == null)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
             var aero = _context.Planeinfo.Find(id);
             var aeroplane  = new AeroplaneInfo()
             {

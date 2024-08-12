@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Airline_reservation.Models
 {
-    [Table("TblPlaneInfo")]
+    [Table("TblAeroPlaneInfo")]
     public class AeroplaneInfo
     {
         [Key]

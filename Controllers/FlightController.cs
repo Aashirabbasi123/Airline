@@ -21,34 +21,44 @@ namespace Airline_reservation.Controllers
             return View();
         }
 
-        public IActionResult AddFlight()
+        public ActionResult AddFlight()
         {
+            
+            ViewBag.Planes = _context.Planeinfo.ToList();
             return View();
         }
 
+    
         [HttpPost]
-        public IActionResult AddFlight(FlightReservation FR)
+       
+        public ActionResult AddFlight(FlightReservation model)
         {
-            if (ModelState.IsValid)
+            var FR = new FlightReservation() 
             {
-                _context.FlightReservation.Add(FR);
-                _context.SaveChanges();
-                return RedirectToAction("DetailFlight", "Flight"); // Redirect to the list of flights or a confirmation page
-            }
+                Planeid = model.Planeid,
+                ResFrom = model.ResFrom,
+                ResTo = model.ResTo,
+                ResDepDate = model.ResDepDate,
+                ResTime = model.ResTime,
+                ResReturnDate = model.ResReturnDate,
+                ResReturnTime = model.ResReturnTime,
+                ResPlane = model.ResPlane,
+                ResTicketPrice = model.ResTicketPrice,
+                SeatType = model.SeatType,
+                TripType = model.TripType,  
+            };
+    
+              _context.FlightReservation.Add(FR);
+              _context.SaveChanges();
 
-            // If there is an issue with the model state, return the form view with validation messages
-            var locations = new List<string> { "New York", "Los Angeles", "Chicago", "Houston", "Miami" };
-            var planes = _context.Planeinfo.Select(p => new { p.PlaneId, p.APlaneName }).ToList();
-
-            ViewBag.Locations = new SelectList(locations);
-            ViewBag.Planes = new SelectList(planes, "PlaneId", "APlaneName");
-
-            return RedirectToAction("AddFlight", "Flight");
+            ViewBag.Planes = _context.Planeinfo.ToList();
+            return RedirectToAction("DetailFlight", "Flight");
         }
+
 
         public IActionResult DetailFlight()
         {
-            var aeroplane = _context.FlightReservation.ToList();
+            var aeroplane = _context.FlightReservation.Include(f => f.AeroplaneInfo).ToList();
             return View(aeroplane);
         }
 

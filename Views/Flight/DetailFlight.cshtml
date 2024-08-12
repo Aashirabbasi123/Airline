@@ -1,7 +1,7 @@
 ﻿@model List<Airline_reservation.Models.FlightReservation>
 
 @{
-    ViewData["Title"] = "DetailFlight";
+    ViewData["Title"] = "Flight Reservations";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -13,8 +13,11 @@
             <tr>
                 <th scope="col">From City</th>
                 <th scope="col">To City</th>
+                <th scope="col">Plane Name</th>
                 <th scope="col">Departure Date</th>
                 <th scope="col">Departure Time</th>
+                <th scope="col">Return Date</th>
+                <th scope="col">Return Time</th>
                 <th scope="col">Seat Type</th>
                 <th scope="col">Ticket Price</th>
                 <th scope="col">Plane Name</th>
@@ -27,13 +30,16 @@
                 <tr>
                     <td>@flight.ResFrom</td>
                     <td>@flight.ResTo</td>
-                    <td>@flight.ResDepDate</td>
+                    <td>@flight.AeroplaneInfo?.APlaneName</td>
+                    <td>@flight.ResDepDate.ToString("yyyy-MM-dd")</td>
                     <td>@flight.ResTime</td>
+                    <td>@(flight.ResReturnDate.HasValue ? flight.ResReturnDate.Value.ToString("yyyy-MM-dd") : "N/A")</td>
+                    <td>@(flight.ResReturnTime.HasValue ? flight.ResReturnTime.Value.ToString() : "N/A")</td>
                     <td>@flight.SeatType</td>
-                    <td>@flight.ResTicketPrice</td>
+                    <td>@flight.ResTicketPrice.ToString("C")</td>
                     <td>@flight.ResPlane</td>
                     <td>
-                        <a asp-controller="Flight" asp-action="Delete" asp-route-id="@flight.Resid" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this flight?');">Delete</a>
+                        <a asp-controller="Flight" asp-action="Delete" asp-route-id="@flight.ReservationId" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this flight reservation?');">Delete</a>
                     </td>
                 </tr>
             }

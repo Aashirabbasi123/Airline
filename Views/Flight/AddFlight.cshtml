@@ -1,26 +1,32 @@
 ﻿@model FlightReservation
 
 @{
-    ViewData["Title"] = "Add Flight";
+    ViewData["Title"] = "Add Flight Reservation";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="container mt-5">
     <h2>Add Flight Reservation</h2>
     <form asp-action="AddFlight" method="post">
+
+        <div class="form-group">
+            <label asp-for="TripType" class="control-label">Trip Type</label>
+            <select id="TripType" class="form-control" asp-for="TripType">
+                <option value="OneWay">One Way</option>
+                <option value="RoundTrip">Round Trip</option>
+            </select>
+            <span asp-validation-for="TripType" class="text-danger"></span>
+        </div>
+
         <div class="form-group">
             <label asp-for="ResFrom" class="control-label">From</label>
-            <select asp-for="ResFrom" class="form-control" asp-items="ViewBag.Locations">
-                <option value="">Select Departure Location</option>
-            </select>
+            <input asp-for="ResFrom" class="form-control" />
             <span asp-validation-for="ResFrom" class="text-danger"></span>
         </div>
 
         <div class="form-group">
             <label asp-for="ResTo" class="control-label">To</label>
-            <select asp-for="ResTo" class="form-control" asp-items="ViewBag.Locations">
-                <option value="">Select Destination Location</option>
-            </select>
+            <input asp-for="ResTo" class="form-control" />
             <span asp-validation-for="ResTo" class="text-danger"></span>
         </div>
 
@@ -36,6 +42,19 @@
             <span asp-validation-for="ResTime" class="text-danger"></span>
         </div>
 
+      
+        <div class="form-group" id="returnDateGroup">
+            <label asp-for="ResReturnDate" class="control-label">Return Date</label>
+            <input asp-for="ResReturnDate" class="form-control" type="date" />
+            <span asp-validation-for="ResReturnDate" class="text-danger"></span>
+        </div>
+
+        <div class="form-group" id="returnTimeGroup">
+            <label asp-for="ResReturnTime" class="control-label">Return Time</label>
+            <input asp-for="ResReturnTime" class="form-control" type="time" />
+            <span asp-validation-for="ResReturnTime" class="text-danger"></span>
+        </div>
+
         <div class="form-group">
             <label asp-for="ResTicketPrice" class="control-label">Ticket Price</label>
             <input asp-for="ResTicketPrice" class="form-control" type="number" step="0.01" placeholder="Price in USD" />
@@ -43,13 +62,16 @@
         </div>
 
         <div class="form-group">
-            <label asp-for="PlaneInfo" class="control-label">Plane Information</label>
-            <select asp-for="PlaneInfo" class="form-control" asp-items="ViewBag.Planes">
-                <option value="">Select Plane</option>
+            <label asp-for="Planeid" class="control-label">Plane Information</label>
+            <select asp-for="Planeid" class="form-control">
+                <option value="">-- Select Plane --</option>
+                @foreach (var plane in ViewBag.Planes)
+                {
+                    <option value="@plane.PlaneId">@plane.APlaneName</option>
+                }
             </select>
-            <span asp-validation-for="PlaneInfo" class="text-danger"></span>
+            <span asp-validation-for="Planeid" class="text-danger"></span>
         </div>
-
         <div class="form-group">
             <label asp-for="SeatType" class="control-label">Seat Type</label>
             <input asp-for="SeatType" class="form-control" placeholder="e.g., Economy, Business" />
@@ -62,10 +84,25 @@
             <span asp-validation-for="ResPlane" class="text-danger"></span>
         </div>
 
-        <button type="submit" class="btn btn-primary">Add Flight</button>
+        <button type="submit" asp-action="AddFlight" class="btn btn-primary">Add Flight</button>
         <a asp-action="Index" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
 
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        function toggleReturnFields() {
+            if ($('#TripType').val() === 'OneWay') {
+                $('#returnDateGroup').hide();
+                $('#returnTimeGroup').hide();
+            } else {
+                $('#returnDateGroup').show();
+                $('#returnTimeGroup').show();
+            }
+        }
 
-}
+        $('#TripType').change(toggleReturnFields);
+        toggleReturnFields(); 
+    });
+</script>

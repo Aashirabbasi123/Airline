@@ -3,49 +3,58 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Airline_reservation.Models
 {
-    [Table("TblFlihtReservation")]
+    [Table("TblFlightReservation")]
     public class FlightReservation
     {
         [Key]
+        public int ReservationId { get; set; }
 
-        public int Resid { get; set; }
-
-        [Required(ErrorMessage = "Form City req")]
-        [Display(Name = "From City")]
-        [StringLength(40, ErrorMessage = "Max 40 char allowed")]
-
+        [Required]
+        [MaxLength(50)]
+        [Display(Name = "From")]
         public string ResFrom { get; set; }
 
-        [Required(ErrorMessage = "To City req")]
-        [Display(Name = "To City")]
-        [StringLength(40, ErrorMessage = "Max 40 char allowed")]
-
+        [Required]
+        [MaxLength(50)]
+        [Display(Name = "To")]
         public string ResTo { get; set; }
 
+        [Required]
         [Display(Name = "Departure Date")]
-        [DataType(DataType.Date)]
+        public DateTime ResDepDate { get; set; }
 
-        public string ResDepDate { get; set; }
-
+        [Required]
         [Display(Name = "Departure Time")]
-        [DataType(DataType.Time)]
+        public TimeSpan ResTime { get; set; }
 
-        public string ResTime { get; set; }
+        [Display(Name = "Return Date")]
+        public DateTime? ResReturnDate { get; set; }
 
-        public int PlaneId { get; set; }
-        public virtual AeroplaneInfo PlaneInfo { get; set; }
+        [Display(Name = "Return Time")]
+        public TimeSpan? ResReturnTime { get; set; }
 
+        [Required]
+        [Display(Name = "Trip Type")]
+        public string TripType { get; set; }
 
-        [Required, Display(Name = "Seat Available")]
+        [Required]
+        [Display(Name = "Ticket Price")]
+        public decimal ResTicketPrice { get; set; }
+
+        [Required]
+        [ForeignKey("AeroplaneInfo")]
+        public int Planeid { get; set; }
+
+        public virtual AeroplaneInfo AeroplaneInfo { get; set; }
+
+        [Required]
+        [MaxLength(20)]
+        [Display(Name = "Seat Type")]
         public string SeatType { get; set; }
 
-        [Required,Display(Name ="Price")]
-
-        public float ResTicketPrice { get; set; }
-
-        [Required ,Display(Name = "Plane")]
-
-        public string ResPlane {  get; set; }
-        public virtual ICollection<FlightBooking> TblFlightBooking { get; set; }
+        [Required]
+        [MaxLength(50)]
+        [Display(Name = "Plane Registration")]
+        public string ResPlane { get; set; }
     }
 }
