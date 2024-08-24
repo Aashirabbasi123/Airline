@@ -96,7 +96,7 @@ namespace Airline_reservation.Controllers
 
             _context.Planeinfo.Add(addAeroplane);
             _context.SaveChanges();
-             return RedirectToAction("AddAeroPlane", "Admin");
+             return RedirectToAction("DetailAeroPlane", "Admin");
         }
 
         public IActionResult DetailAeroPlane()
